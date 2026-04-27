@@ -1,11 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afthab | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Afthab|Portfolio</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    
+
+<!-- CURSOR -->
+<div class="cursor"></div>
+
+<!-- RIGHT NAV -->
+<nav class="side-nav">
+  <div class="nav-container">
+    <ul>
+      <li data-section="home">
+        <span class="dot"></span>
+        <span class="label">Home</span>
+      </li>
+      <li data-section="about">
+        <span class="dot"></span>
+        <span class="label">About</span>
+      </li>
+      <li data-section="projects">
+        <span class="dot"></span>
+        <span class="label">Work</span>
+      </li>
+      <li data-section="skills">
+        <span class="dot"></span>
+        <span class="label">Skills</span>
+      </li>
+      <li data-section="contact">
+        <span class="dot"></span>
+        <span class="label">Contact</span>
+      </li>
+    </ul>
+    <div class="nav-progress"></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="section hero">
+
+  <!-- 3D ORB (NEW) -->
+  <canvas id="orb-canvas"></canvas>
+
+  <!-- BACKGROUND EFFECTS -->
+  <canvas id="particles"></canvas>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-secondary"></div>
+
+  <!-- CONTENT -->
+  <div class="hero-content">
+
+    <h1 class="reveal-text">
+      <span>Afthab</span>
+      <span>NH</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      Full Stack Developer | AI Enthusiast
+    </p>
+
+    <button class="cta">View My Works</button>
+
+  </div>
+
+  <!-- SCROLL INDICATOR -->
+  <div class="scroll-indicator"></div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section about">
+  <h2>Crafting Scalable & Intelligent Systems</h2>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section projects">
+  <h2>Selected Work</h2>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section skills">
+  <h2>Tech Stack</h2>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact">
+  <h2>Let’s Build Something Exceptional</h2>
+</section>
+
+<!-- THREE JS-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+
+<!-- LIBS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis/bundled/lenis.min.js"></script>
+
+<!-- JS -->
+<script src="js/main.js"></script>
+<script src="js/scroll.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/orb.js"></script>
+
+
 </body>
 </html>

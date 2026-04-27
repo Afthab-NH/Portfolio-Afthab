@@ -90,21 +90,6 @@ gsap.from(".hero-subtitle", {
   duration: 1
 });
 
-const button = document.querySelector(".cta");
-
-document.addEventListener("mousemove", (e) => {
-  const rect = button.getBoundingClientRect();
-
-  const x = e.clientX - rect.left - rect.width / 2;
-  const y = e.clientY - rect.top - rect.height / 2;
-
-  button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-});
-
-button.addEventListener("mouseleave", () => {
-  button.style.transform = "translate(0,0)";
-});
-
 // PARTCILES
 
 const canvas = document.getElementById("particles");
@@ -140,3 +125,12 @@ function draw() {
 }
 
 draw();
+
+const avatar = document.querySelector(".profile-avatar");
+
+document.addEventListener("mousemove", (e) => {
+  const x = (window.innerWidth / 2 - e.clientX) / 25;
+  const y = (window.innerHeight / 2 - e.clientY) / 25;
+
+  avatar.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+});

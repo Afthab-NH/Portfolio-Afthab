@@ -1,4 +1,9 @@
-const canvas = document.getElementById("orb-canvas");
+// SAFE CANVAS SELECTION
+const orbCanvas = document.getElementById("orb-canvas");
+
+if (!orbCanvas) {
+  console.error("Orb canvas not found");
+}
 
 // SCENE
 const scene = new THREE.Scene();
@@ -10,11 +15,13 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.z = 3;
+
+// Move camera slightly back
+camera.position.z = 2.5;
 
 // RENDERER
 const renderer = new THREE.WebGLRenderer({
-  canvas: canvas,
+  canvas: orbCanvas,
   alpha: true,
   antialias: true
 });
@@ -22,56 +29,57 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// SPHERE
-const geometry = new THREE.SphereGeometry(1, 64, 64);
+// SPHERE (MAKE IT MORE VISIBLE)
+const geometry = new THREE.SphereGeometry(1.1, 64, 64);
+camera.position.z = 3;
 
 const material = new THREE.MeshStandardMaterial({
   color: 0xff5a1f,
   emissive: 0xff5a1f,
-  emissiveIntensity: 0.35,
-  metalness: 0.5,
+  emissiveIntensity: 0.4,
+  metalness: 0.6,
   roughness: 0.25
 });
 
 const sphere = new THREE.Mesh(geometry, material);
 scene.add(sphere);
 
-// LIGHTING
-const light1 = new THREE.PointLight(0xff5a1f, 1.5);
-light1.position.set(2, 2, 3);
+// LIGHTING (STRONGER + BETTER PLACED)
+const light1 = new THREE.PointLight(0xff5a1f, 2);
+light1.position.set(3, 3, 3);
 scene.add(light1);
 
-const light2 = new THREE.PointLight(0xffffff, 0.6);
-light2.position.set(-2, -2, 2);
+const light2 = new THREE.PointLight(0xffffff, 1);
+light2.position.set(-3, -2, 2);
 scene.add(light2);
 
 // MOUSE INTERACTION
-let targetX = 0;
-let targetY = 0;
+let mouseX = 0;
+let mouseY = 0;
 
 document.addEventListener("mousemove", (e) => {
-  targetX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-  targetY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+  mouseX = (e.clientX / window.innerWidth - 0.5);
+  mouseY = (e.clientY / window.innerHeight - 0.5);
 });
 
-// ANIMATION
+// ANIMATION LOOP
 function animate() {
   requestAnimationFrame(animate);
 
-  // SMOOTH ROTATION
+  // BASE ROTATION (steady)
   sphere.rotation.y += 0.002;
   sphere.rotation.x += 0.001;
 
-  // INTERACTIVE TILT (SMOOTHED)
-  sphere.rotation.y += (targetX - sphere.rotation.y) * 0.02;
-  sphere.rotation.x += (targetY - sphere.rotation.x) * 0.02;
+  // SMOOTH INTERACTION (corrected)
+  sphere.rotation.y += (mouseX * 0.3 - sphere.rotation.y) * 0.02;
+  sphere.rotation.x += (mouseY * 0.3 - sphere.rotation.x) * 0.02;
 
   renderer.render(scene, camera);
 }
 
 animate();
 
-// RESPONSIVE
+// RESIZE FIX
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
